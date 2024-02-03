@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+ openmeetings:
+  image: apache/openmeetings:7.2.0
+  ports:
+      - "5443:5443"   
+      - "5080:5080"   
+  networks:
+   my-net:
+     ipv4_address: 95.84.169.33
+
+networks:
+ my-net:
+  driver: macvlan
+  driver_opts:
+   parent: enp0s3
+  ipam:
+    config:
+      - subnet: "95.84.169.179/24"
+        gateway: "95.84.169.1"
+        aux_addresses:
+            host: 95.84.169.179
