@@ -1,14 +1,26 @@
 version: "2"
 
+
 services:
  openmeetings:
+  volumes:
+    - /home/user/project5:/var/lib/mysql 
+  #build: .
   image: apache/openmeetings:7.2.0
   ports:
-      - "5443:5443"   
-      - "5080:5080"   
-  networks:
-   my-net:
-     ipv4_address: 95.84.169.33
+    - "5443:5443"   
+    - "5080:5080"   
+    - "3306:3306"   
+
+
+  # volumes:
+  #       - my-datavolume:/var/lib/mysql
+  # networks:
+  #  my-net:
+  #    ipv4_address: 95.84.169.33
+
+volumes:
+  my-datavolume: 
 
 networks:
  my-net:
